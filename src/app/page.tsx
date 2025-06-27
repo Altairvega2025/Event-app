@@ -89,6 +89,39 @@ export default function Home() {
 
 
 
+
+<section>
+  <div className="p-6 bg-white min-h-screen max-w-[90%] mx-auto">
+    <h2 className="text-2xl font-bold mb-6">Top trending in Lagos</h2>
+    
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {events.map((event, index) => (
+        <EventCard key={index} {...event} />
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+
+<section>
+  <div className="p-6 bg-white min-h-screen max-w-[90%] mx-auto">
+    <h2 className="text-2xl font-bold mb-6">Free Events</h2>
+
+    <div className="flex flex-wrap gap-6 justify-start">
+      {events.map((event, index) => (
+        <div
+          key={index}
+          className="w-full sm:w-[48%] md:w-[31%] lg:w-[23%] flex-shrink-0"
+        >
+          <EventCard {...event} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 </div>
     
   );
