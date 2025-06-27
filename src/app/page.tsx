@@ -67,7 +67,7 @@ export default function Home() {
         </h1>
 
        
-        <div className="flex flex-row sm:flex-row gap-4 mt-4">
+        <div className="flex flex-col sm:flex-row gap-4 mt-4">
           <button className="relative overflow-hidden group px-6 py-3 w-fit font-medium text-white bg-[#3e80e4] rounded shadow">
             <span className="relative z-10 group-hover:text-black transition duration-300">
               <Link href="/createevent">Create Event</Link>
