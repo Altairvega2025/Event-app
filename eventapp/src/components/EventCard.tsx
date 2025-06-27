@@ -1,6 +1,11 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import { useRouter } from 'next/navigation'; 
+
 
 type EventProps = {
+  id:number
   date: string;
   month: string;
   title: string;
@@ -11,6 +16,7 @@ type EventProps = {
 };
 
 const EventCard: React.FC<EventProps> = ({
+  id,
   date,
   month,
   title,
@@ -18,9 +24,19 @@ const EventCard: React.FC<EventProps> = ({
   venue,
   time,
   price,
-}) => {
+}) => 
+  
+  {
+    
+
+     const router = useRouter();
+
+ const handleClick = () => {
+    router.push(`/events/${id}`);
+  };
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden w-[23%] flex-shrink-0">
+    <div className="bg-white shadow-md rounded-lg overflow-hidden w-[23%] flex-shrink-0" 
+       onClick={handleClick}   >
       <img src={image} alt={title} className="w-full h-52 object-cover" />
       <div className="p-4">
         <div className="text-sm text-gray-500 font-semibold">

@@ -63,8 +63,8 @@ export default function Home() {
         </h1>
 
         <p className={`text-sm sm:text-base md:text-lg text-black ${textclass}`}>
-          A referral-only strategic communications firm scaling influence across Africa, the diaspora, and the global stage.
-        </p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et purus a odio finibus bibendum in sit amet leo. Mauris feugiat erat tellus. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.
+         </p>
 
         <p className="text-black  font-medium  text-[18px] ">
           Slow loop of Lagos traffic at night → fade to Capitol Hill steps → aerial of Johannesburg skyline → sleek boardroom in Dubai.
@@ -104,7 +104,7 @@ export default function Home() {
       <h2 className="text-2xl font-bold mb-6">Free Event </h2>
       <div className="flex gap-6 overflow-x-auto pb-4 flex-wrap">
         {events.map((event, index) => (
-          <EventCard key={index} {...event} />
+          <EventCard key={index} {...event}  />
         ))}
       </div>
     </div>
