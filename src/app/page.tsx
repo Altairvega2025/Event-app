@@ -8,7 +8,7 @@ import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import light from '../../public/image/light.png'
 
-import  {titleClassName,headerclass,What_We_Do, quote,textclass,We_work_with}  from "../app/data";
+import  {titleClassName,headerclass,What_We_Do, quote,textclass,We_work_with}  from "./data";
 import { useState,useEffect } from "react";
 import Link from "next/link";
 import { events } from "@/data/events";
