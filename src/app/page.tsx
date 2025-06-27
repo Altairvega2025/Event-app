@@ -59,7 +59,7 @@ export default function Home() {
     <div className="absolute top-1/6 md:top-1/4  left-4 sm:left-8 md:left-16 max-w-[90%] sm:max-w-md md:max-w-lg lg:max-w-2xl p-4 sm:p-6">
       <div className="flex flex-col gap-6"> {/* Increased gap between elements */}
         <h1 className="text-[40px] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-snug  text-[#ec5f74]">
-          We Don’t Do PR. We Engineer Perception.
+           Lorem ipsum dolor sit amet
         </h1>
 
         <p className={`text-sm sm:text-base md:text-lg text-black ${textclass}`}>
@@ -71,7 +71,7 @@ export default function Home() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-4">
-          <button className="relative overflow-hidden group px-6 py-3 w-fit font-medium text-white bg-[#ff2143] rounded shadow">
+          <button className="relative overflow-hidden group px-6 py-3 w-fit font-medium text-white bg-[#3e80e4] rounded shadow">
             <span className="relative z-10 group-hover:text-black transition duration-300">
               <Link href="/createevent">Create Event</Link>
             </span>
@@ -86,29 +86,9 @@ export default function Home() {
 
 <EventFilterBar/>
 
-<section>
-   <div className="p-6 bg-white min-h-screen max-w-[90%] mx-auto">
-      <h2 className="text-2xl font-bold mb-6">Top trending in Lagos</h2>
-      <div className="flex gap-6 overflow-x-auto pb-4 flex-wrap">
-        {events.map((event, index) => (
-          <EventCard key={index} {...event} />
-        ))}
-      </div>
-    </div>
-</section>
 
 
 
-<section>
-   <div className="p-6 bg-white min-h-screen max-w-[90%] mx-auto">
-      <h2 className="text-2xl font-bold mb-6">Free Event </h2>
-      <div className="flex gap-6 overflow-x-auto pb-4 flex-wrap">
-        {events.map((event, index) => (
-          <EventCard key={index} {...event}  />
-        ))}
-      </div>
-    </div>
-</section>
 </div>
     
   );

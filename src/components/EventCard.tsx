@@ -35,7 +35,8 @@ const EventCard: React.FC<EventProps> = ({
     router.push(`/events/${id}`);
   };
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden w-[23%] flex-shrink-0" 
+    <div  className="bg-white shadow-md rounded-lg overflow-hidden w-full flex-shrink-0 cursor-pointer"
+
        onClick={handleClick}   >
       <img src={image} alt={title} className="w-full h-52 object-cover" />
       <div className="p-4">
@@ -45,7 +46,7 @@ const EventCard: React.FC<EventProps> = ({
         <h3 className="text-lg font-bold text-gray-800 mt-1">{title}</h3>
         <div className="flex items-center text-sm text-gray-600 mt-1">
           <span className="mr-2">📍 {venue}</span>
-          <span>🕒 {time}</span>
+          <span> {time}</span>
         </div>
         <div className="mt-2 text-blue-700 font-bold">
           Starting at ₦{price}
