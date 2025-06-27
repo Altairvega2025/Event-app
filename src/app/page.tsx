@@ -58,7 +58,7 @@ export default function Home() {
 
     <div className="absolute top-1/6 md:top-1/4  left-4 sm:left-8 md:left-16 max-w-[90%] sm:max-w-md md:max-w-lg lg:max-w-2xl p-4 sm:p-6">
       <div className="flex flex-col gap-6"> {/* Increased gap between elements */}
-        <h1 className="text-[40px] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-snug  text-[#ec5f74]">
+        <h1 className="text-[40px] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-snug  text-[#000000]">
            Lorem ipsum dolor sit amet
         </h1>
 
