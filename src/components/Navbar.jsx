@@ -15,10 +15,17 @@ const [isOpen, setIsOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
 
+
+  const [searc, setsearc] = useState("")
+ const handlesearch=(e)=>{
+     setsearc(e.target.value)
+     console.log(searc)
+ }
+
   return (
     
 
-    <div className="fixed  top-0 left-0 z-50 w-full bg-white ">
+    <div className="fixed  top-0 left-0 z-50 w-full bg-white">
     <nav className="flex justify-between bg-white  mx-auto items-center max-w-6xl w-full px-0 py-4 md:px-0 md:py-3">
 
      
@@ -35,14 +42,14 @@ const [isOpen, setIsOpen] = useState(false);
 
       {/* Navigation Links     rgb(255, 255, 255) */}
       <ul className=" space-x-6 text-[text-[#163546]]   hidden md:flex font-light ">
-         <li><Link href="/" className="hover:text-[#343a40]">Home</Link></li>
-        <li><Link href="/explore" className="hover:text-[#343a40]">Explore</Link></li>
-        <li><Link href="/createevent" className="hover:text-[#343a40]">Create Event</Link></li>
-        <li><Link href="/blog" className="hover:text-[#343a40]">Blog</Link></li>
-        <li><Link href="/contacts" className="hover:text-[#343a40]">Contacts Us</Link></li>
+         <li><Link href="/" className="hover:text-[#3e80e4]">Home</Link></li>
+        <li><Link href="/explore" className="hover:text-[#3e80e4]">Explore</Link></li>
+        <li><Link href="/createevent" className="hover:text-[#3e80e4]">Create Event</Link></li>
+        <li><Link href="/blog" className="hover:text-[#3e80e4]">Blog</Link></li>
+        <li><Link href="/contacts" className="hover:text-[#3e80e4]">Contacts Us</Link></li>
            <li><button onClick={() => setShowSearch(!showSearch)}><CiSearch /></button></li>
 
-             <li><Link href="#" className="bg-[#3e80e4] text-white  px-6 py-3 rounded "> Login</Link></li>
+             <li><Link href="#" className="bg-[#3e80e4] text-white  px-6 py-3 rounded hover:bg-white hover:border-4 hover:border-[#3e80e4] hover:text-[#3e80e4]"> Login</Link></li>
    
             </ul>
    
@@ -59,14 +66,26 @@ const [isOpen, setIsOpen] = useState(false);
 
 
 {showSearch && (
-        <div className="w-full bg-white px-4 py-2 shadow-md">
+        <div className=" px-4 py-2 shadow-md z-10 ml-20">
           <input
             type="text"
-            placeholder="Search events..."
-            className="w-[12rem] border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
+            
+           />
+          <input type="text" placeholder="Search events..."  className="w-[12rem] border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          value={searc} onChange={handlesearch} />
         </div>
       )}
+
+
+
+
+
+
+
+
+
+
+      
 
     {/* Mobile Menu */}
       {isOpen && (

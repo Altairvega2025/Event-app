@@ -8,7 +8,7 @@ export default function Footer() {
   
 
 
-       <div className="bg-[#B5D5FF] text-gray-800 px-4 md:px-8 py-20">
+       <div className="bg-[#B5D5FF] text-gray-800 px-8 md:px-8 py-20 md:bg-red-600 sm:bg-yellow-500">
         <div className='mx-auto items-center max-w-6xl w-full'> 
       <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 md:grid-cols-4">
         {/* Logo & Description */}
