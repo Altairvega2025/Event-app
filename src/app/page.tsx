@@ -31,48 +31,6 @@ const [activeFilter, setActiveFilter] = useState("All");
   });
 
 
-/*
-const filteredEvents = events.filter((event) => {
-  const matchesFilter =
-    activeFilter === "All" ||
-    event.title ?.toLowerCase().includes(activeFilter.toLowerCase());
-
-  const searchTerm = search.toLowerCase();
-  const matchesSearch =
-    event.title.toLowerCase().includes(searchTerm) ||
-    event.venue.toLowerCase().includes(searchTerm) ||
-    event.date.toLowerCase().includes(searchTerm) ||
-    event.month.toLowerCase().includes(searchTerm) ||
-    event.time.toLowerCase().includes(searchTerm) ||
-    event.price.toLowerCase().includes(searchTerm);
-
-  return matchesFilter && matchesSearch;
-});
-
-
-
-
-
-const filteredEvents = events.filter((event) => {
-  const matchesFilter =
-    activeFilter === "All" ||
-    (event.title && event.title.toLowerCase().includes(activeFilter.toLowerCase()));
-
-  const searchTerm = search?.toLowerCase?.() || "";
-
-  const matchesSearch =
-    (event.title && event.title.toLowerCase().includes(searchTerm)) ||
-    (event.venue && event.venue.toLowerCase().includes(searchTerm)) ||
-    (event.date && event.date.toLowerCase().includes(searchTerm)) ||
-    (event.month && event.month.toLowerCase().includes(searchTerm)) ||
-    (event.time && event.time.toLowerCase().includes(searchTerm)) ||
-    (event.price && event.price.toLowerCase().includes(searchTerm));
-
-  return matchesFilter && matchesSearch;
-});
-
-*/
-
 
 
 
