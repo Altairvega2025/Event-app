@@ -8,18 +8,15 @@ import { CiSearch } from "react-icons/ci";
 
 const Navbar = () => {
   
- // const [isOpen, setIsOpen] = useState<boolean>(false);
-  //const [showSearch, setShowSearch] = useState<boolean>(false);
-
-const [isOpen, setIsOpen] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [showSearch, setShowSearch] = useState<boolean>(false);
 
 
 
   const [search, setsearch] = useState("")
 
   
- const handlesearch=(e)=>{
+ const handlesearch=(e: { target: { value: React.SetStateAction<string>; }; })=>{
      setsearch(e.target.value)
      console.log(search)
  }
@@ -48,7 +45,7 @@ const [isOpen, setIsOpen] = useState(false);
         <li><Link href="/contacts" className="hover:text-[#3e80e4]">Contacts Us</Link></li>
            <li><button onClick={() => setShowSearch(!showSearch)}><CiSearch /></button></li>
 
-             <li><Link href="/Login" className="bg-[#3e80e4] text-white  px-6 py-3 rounded hover:bg-white hover:border-4 hover:border-[#3e80e4] hover:text-[#3e80e4]"> Login</Link></li>
+             <li><Link href="/Login" className="bg-[#3e80e4] text-white  px-6 py-3 rounded hover:bg-white hover:border-1 hover:border-[#3e80e4] hover:text-[#3e80e4]"> Login</Link></li>
    
             </ul>
    

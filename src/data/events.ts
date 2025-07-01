@@ -1,5 +1,5 @@
 export type Event = {
-  
+  category: any;
     id:number
   date: string;
   month: string;
@@ -20,7 +20,7 @@ export const events: Event[] = [
     venue: "Undisclosed",
     time: "6:00pm",
     price: "8000",
-   
+     category: "Food & Drink"
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ export const events: Event[] = [
     venue: "GT EVENT CENTER",
     time: "12:00pm",
     price: "3500",
-    
+    category: undefined
   },
   {
     id: 3,
@@ -42,7 +42,7 @@ export const events: Event[] = [
     venue: "Undisclosed",
     time: "2:00pm",
     price: "0",
-  
+     category: "Music",
   },{
     id: 4,
     date: "16",
@@ -52,7 +52,7 @@ export const events: Event[] = [
     venue: "GT EVENT CENTER",
     time: "12:00pm",
     price: "3500",
- 
+    category: undefined
   },
   {
     id: 5,
@@ -63,7 +63,7 @@ export const events: Event[] = [
     venue: "Undisclosed",
     time: "2:00pm",
     price: "0",
-   
+    category: undefined
   },{
     id: 6,
     date: "16",
@@ -73,7 +73,7 @@ export const events: Event[] = [
     venue: "GT EVENT CENTER",
     time: "12:00pm",
     price: "3500",
-   
+    category: undefined
   },
   {
     id: 7,
@@ -84,7 +84,7 @@ export const events: Event[] = [
     venue: "Undisclosed",
     time: "2:00pm",
     price: "0",
-    
+    category: undefined
   },
 ];
 

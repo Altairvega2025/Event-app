@@ -19,19 +19,19 @@ import EventFilterBar from "@/components/EventFilterBar";
 
 
 
-export default function Home() {
+export default function Home({ search=""}: { search?: string }) {
 
 
- const [search, setsearch] = useState("")
+ 
 const [activeFilter, setActiveFilter] = useState("All");
 
- /* const filteredEvents = events.filter((event) => {
+  const filteredEvents = events.filter((event) => {
     if (activeFilter === "All") return true;
     return event.category?.toLowerCase().includes(activeFilter.toLowerCase());
-  });*/
+  });
 
 
-
+/*
 const filteredEvents = events.filter((event) => {
   const matchesFilter =
     activeFilter === "All" ||
@@ -51,6 +51,27 @@ const filteredEvents = events.filter((event) => {
 
 
 
+
+
+const filteredEvents = events.filter((event) => {
+  const matchesFilter =
+    activeFilter === "All" ||
+    (event.title && event.title.toLowerCase().includes(activeFilter.toLowerCase()));
+
+  const searchTerm = search?.toLowerCase?.() || "";
+
+  const matchesSearch =
+    (event.title && event.title.toLowerCase().includes(searchTerm)) ||
+    (event.venue && event.venue.toLowerCase().includes(searchTerm)) ||
+    (event.date && event.date.toLowerCase().includes(searchTerm)) ||
+    (event.month && event.month.toLowerCase().includes(searchTerm)) ||
+    (event.time && event.time.toLowerCase().includes(searchTerm)) ||
+    (event.price && event.price.toLowerCase().includes(searchTerm));
+
+  return matchesFilter && matchesSearch;
+});
+
+*/
 
 
 
@@ -120,7 +141,7 @@ const filteredEvents = events.filter((event) => {
             <span className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
           </button>
 
-          <button className="bg-white text-black px-2  md:px-6 py-2 rounded shadow opacity-70 hover:opacity-100 hover:border-[#3e80e4] hover:border-4 transition w-1/2 md:w-1/3 whitespace-nowrap ">
+          <button className="bg-white text-black px-2  md:px-6 py-2 rounded shadow opacity-70 hover:opacity-100 hover:border-[#3e80e4] hover:border-1 transition w-1/2 md:w-1/3 whitespace-nowrap ">
             <Link href="/blog">More about Us</Link>
           </button>
         </div>
