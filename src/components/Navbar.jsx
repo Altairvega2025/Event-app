@@ -16,10 +16,12 @@ const [isOpen, setIsOpen] = useState(false);
 
 
 
-  const [searc, setsearc] = useState("")
+  const [search, setsearch] = useState("")
+
+  
  const handlesearch=(e)=>{
-     setsearc(e.target.value)
-     console.log(searc)
+     setsearch(e.target.value)
+     console.log(search)
  }
 
   return (
@@ -29,18 +31,15 @@ const [isOpen, setIsOpen] = useState(false);
     <nav className="flex justify-between bg-white  mx-auto items-center max-w-6xl w-full px-0 py-4 md:px-0 md:py-3">
 
      
-      {/* Logo 
-      
-       <nav className="flex items-center justify-between px-5 mx-auto shadow-sm md:bg-green-700 lg:bg-red-600 bg-blue-600 md:w-full md:max-w-3xl lg:w-">*/}
-      <div className="text-2xl  font-bold text-[text-[#163546]] py-0 px-4 md:py-2 rounded-tl-lg rounded-br-lg tracking-wide">
-       
-        
-        <Link href="/" className="hover:text-[#343a40] flex justify-center text-center "> <img src="/image/logo.jpg" alt="Pevent Logo" className="w-6 h-6 mr-2 rounded-2xl" />
-        <p className="font-bold text-3xl text-[#3e80e4] ">Faaji Ex</p>
-        </Link>
-      </div>
+     
+      <div className="flex items-center justify-center text-2xl font-bold text-[#163546] py-0 px-4 md:py-2 rounded-tl-lg rounded-br-lg tracking-wide">
+  <Link href="/" className="flex items-center space-x-2 hover:text-[#343a40]">
+    <img src="/image/logo.jpg" alt="Pevent Logo" className="w-6 h-6 rounded-2xl" />
+    <p className="font-bold text-3xl text-[#3e80e4]">Ita Dun</p>
+  </Link>
+</div>
 
-      {/* Navigation Links     rgb(255, 255, 255) */}
+
       <ul className=" space-x-6 text-[text-[#163546]]   hidden md:flex font-light ">
          <li><Link href="/" className="hover:text-[#3e80e4]">Home</Link></li>
         <li><Link href="/explore" className="hover:text-[#3e80e4]">Explore</Link></li>
@@ -49,12 +48,11 @@ const [isOpen, setIsOpen] = useState(false);
         <li><Link href="/contacts" className="hover:text-[#3e80e4]">Contacts Us</Link></li>
            <li><button onClick={() => setShowSearch(!showSearch)}><CiSearch /></button></li>
 
-             <li><Link href="#" className="bg-[#3e80e4] text-white  px-6 py-3 rounded hover:bg-white hover:border-4 hover:border-[#3e80e4] hover:text-[#3e80e4]"> Login</Link></li>
+             <li><Link href="/Login" className="bg-[#3e80e4] text-white  px-6 py-3 rounded hover:bg-white hover:border-4 hover:border-[#3e80e4] hover:text-[#3e80e4]"> Login</Link></li>
    
             </ul>
    
 
-       {/* Mobile Hamburger */}
         <div className="md:hidden  pr-8">
           <button onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <p className="font-bold text-black">X</p> :<RxHamburgerMenu size={25} color="black" />}
@@ -67,12 +65,10 @@ const [isOpen, setIsOpen] = useState(false);
 
 {showSearch && (
         <div className=" px-4 py-2 shadow-md z-10 ml-20">
-          <input
-            type="text"
-            
-           />
+          
           <input type="text" placeholder="Search events..."  className="w-[12rem] border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          value={searc} onChange={handlesearch} />
+          value={search} onChange={handlesearch} />
+              
         </div>
       )}
 
@@ -87,7 +83,7 @@ const [isOpen, setIsOpen] = useState(false);
 
       
 
-    {/* Mobile Menu */}
+
       {isOpen && (
         <ul className="md:hidden flex flex-col space-y-4 px-6 pb-4  font-semibold bg-white">
           <li><Link href="/" className="hover:text-white text-[#163546]">Home</Link></li>
@@ -106,3 +102,25 @@ const [isOpen, setIsOpen] = useState(false);
 };
 
 export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

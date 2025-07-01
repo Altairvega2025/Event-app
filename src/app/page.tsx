@@ -17,7 +17,52 @@ import EventFilterBar from "@/components/EventFilterBar";
 
 
 
+
+
 export default function Home() {
+
+
+ const [search, setsearch] = useState("")
+const [activeFilter, setActiveFilter] = useState("All");
+
+ /* const filteredEvents = events.filter((event) => {
+    if (activeFilter === "All") return true;
+    return event.category?.toLowerCase().includes(activeFilter.toLowerCase());
+  });*/
+
+
+
+const filteredEvents = events.filter((event) => {
+  const matchesFilter =
+    activeFilter === "All" ||
+    event.title ?.toLowerCase().includes(activeFilter.toLowerCase());
+
+  const searchTerm = search.toLowerCase();
+  const matchesSearch =
+    event.title.toLowerCase().includes(searchTerm) ||
+    event.venue.toLowerCase().includes(searchTerm) ||
+    event.date.toLowerCase().includes(searchTerm) ||
+    event.month.toLowerCase().includes(searchTerm) ||
+    event.time.toLowerCase().includes(searchTerm) ||
+    event.price.toLowerCase().includes(searchTerm);
+
+  return matchesFilter && matchesSearch;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
    const sliderRef = useRef<Slider>(null);
 
@@ -86,43 +131,25 @@ export default function Home() {
 </section>
 
 
-<EventFilterBar/>
+<EventFilterBar   activeFilter={activeFilter}
+        setActiveFilter={setActiveFilter}/>
 
 
+ <section>
+        <div className="p-6 bg-white min-h-screen max-w-[90%] mx-auto">
+          <h2 className="text-2xl font-bold mb-6">
+            {activeFilter === "All"
+              ? "Top trending in Lagos"
+              : `${activeFilter} Events in Lagos`}
+          </h2>
 
-
-
-<section>
-  <div className="p-6 bg-white min-h-screen max-w-[90%] mx-auto">
-    <h2 className="text-2xl font-bold mb-6">Top trending in Lagos</h2>
-    
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {events.map((event, index) => (
-        <EventCard key={index} {...event} />
-      ))}
-    </div>
-  </div>
-</section>
-
-
-
-
-<section>
-  <div className="p-6 bg-white min-h-screen max-w-[90%] mx-auto">
-    <h2 className="text-2xl font-bold mb-6">Free Events</h2>
-
-    <div className="flex flex-wrap gap-6 justify-start">
-      {events.map((event, index) => (
-        <div
-          key={index}
-          className="w-full sm:w-[48%] md:w-[31%] lg:w-[23%] flex-shrink-0"
-        >
-          <EventCard {...event} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {filteredEvents.map((event, index) => (
+              <EventCard key={index} {...event} />
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
 </div>
     

@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="flex items-center mb-4">
                 <img src="/image/logo.jpg" alt="Pevent Logo" className="w-6 h-6 mr-2 rounded-2xl" />
             <span className="text-xl md:text-2xl font-bold text-[#2E62A6]">
-              Faaji Ex
+              Ita Dun
             </span>
           </div>
           <p className="text-sm leading-relaxed">
@@ -77,7 +77,7 @@ export default function Footer() {
 
       {/* Bottom Line */}
       <div className="mt-10 pt-6 border-t border-gray-300 text-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-center">© 2025 Faaji Ex. All rights reserved.</p>
+        <p className="text-center">© 2025 Ita Dun. All rights reserved.</p>
         <div className="flex gap-4">
           <a href="#" className="hover:underline">Terms of Service</a>
           <a href="#" className="hover:underline">Privacy Policy</a>
