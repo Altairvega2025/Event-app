@@ -19,7 +19,7 @@ import EventFilterBar from "@/components/EventFilterBar";
 
 
 
-export default function Home({ search=""}: { search?: string }) {
+export default function Home() {
 
 
  

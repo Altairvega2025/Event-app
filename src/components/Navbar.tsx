@@ -8,8 +8,10 @@ import { CiSearch } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
+  
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [showSearch, setShowSearch] = useState<boolean>(false);
+
   const [search, setSearch] = useState("");
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,10 +20,10 @@ const Navbar = () => {
 
   return (
     <>
-
+      {/* Backdrop */}
       {showSearch && (
         <div
-          className="fixed inset-0  z-40"
+          className="fixed inset-0 bg-black bg-opacity-30 z-40"
           onClick={() => setShowSearch(false)}
         ></div>
       )}
@@ -106,8 +108,13 @@ const Navbar = () => {
             <li><Link href="/createevent">Create Event</Link></li>
             <li><Link href="/blog">Blog</Link></li>
             <li><Link href="/contacts">Contacts Us</Link></li>
-            <li><Link href="/Login"  className="bg-[#3e80e4] text-white px-6 py-2 rounded hover:bg-white hover:text-[#3e80e4] hover:border hover:border-[#3e80e4]"
-           >  Login   </Link></li>
+             <li>
+              <Link
+                href="/Login"
+                className="bg-[#3e80e4] text-white px-6 py-2 rounded hover:bg-white hover:text-[#3e80e4] hover:border hover:border-[#3e80e4]"
+              >
+                Login
+              </Link></li>
           </ul>
         )}
       </div>
@@ -116,7 +123,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
 
 
 
