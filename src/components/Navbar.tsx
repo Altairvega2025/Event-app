@@ -7,12 +7,19 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 
-const Navbar = () => {
+
+
+type NavbarProps = {
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Navbar = ({search,setSearch}:NavbarProps) => {
   
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
 
-  const [search, setSearch] = useState<string>("");
+
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);

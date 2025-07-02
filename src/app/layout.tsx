@@ -1,11 +1,9 @@
 "use client";
 import { Inter } from "next/font/google"
 import { usePathname } from "next/navigation";
-
-
 import "./globals.css";
-import Navbar from "../components/Navbar";
 import Footer from "@/components/Footer";
+import React from "react";
 
 
 const inter = Inter({
@@ -29,16 +27,13 @@ export default function RootLayout({
 
   const hideLayout = hideLayoutOn.includes(pathname);
 
-
-
-  
   return (
     <html lang="en" >
       <body
         className={inter.variable} >
-       
-        {!hideLayout && <Navbar  />}
+        
         <main>{children}</main>
+
         {!hideLayout && <Footer />}
         
       </body>

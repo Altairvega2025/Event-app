@@ -14,6 +14,7 @@ import Link from "next/link";
 import { events } from "@/data/events";
 import EventCard from "@/components/EventCard";
 import EventFilterBar from "@/components/EventFilterBar";
+import Navbar from "@/components/Navbar";
 
 
 
@@ -25,11 +26,84 @@ export default function Home() {
  
 const [activeFilter, setActiveFilter] = useState("All");
 
-  const filteredEvents = events.filter((event) => {
+  
+
+  const [search, setSearch] = useState<string>("");
+
+  const filteredEventee = events.filter((event) => {
+    if (activeFilter === "All") return true;
+    return event.title?.toLowerCase().includes(activeFilter.toLowerCase());
+  });
+
+
+const filteredEvents = events.filter((event) => {
+    const searchTerm = (search || "").toLowerCase();
+
+    const matchesSearch =
+      searchTerm === "" ||
+      [event.title, event.venue, event.date, event.month, event.time, event.price]
+        .filter(Boolean)
+        .some(
+          (field) =>
+            typeof field === "string" &&
+            field.toLowerCase().includes(searchTerm)
+        )
+    
+
+    const matchesFilter =
+    activeFilter === "All" ||
+    event.title?.toLowerCase().includes(activeFilter.toLowerCase());
+
+  return matchesSearch && matchesFilter;
+  });
+
+  
+/*
+  {events.filter((val)=>{
+    return(search===""||val.toLowerCase().includes(search.toLowerCase())
+    ?val:null)}).map((event, index)=>
+    (
+       <EventCard key={index} {...event} />
+    )) }
+
+
+
+
+    const filteredEvents = events.filter((event) => {
     if (activeFilter === "All") return true;
     return event.category?.toLowerCase().includes(activeFilter.toLowerCase());
   });
 
+
+
+   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {filteredEvents.map((event, index) => (
+              <EventCard key={index} {...event} />
+            ))}
+          </div>
+
+
+
+
+
+          
+<EventFilterBar   activeFilter={activeFilter}
+        setActiveFilter={setActiveFilter}/>
+
+
+ <section>
+        <div className="p-6 bg-white min-h-screen max-w-[90%] mx-auto">
+          <h2 className="text-2xl font-bold mb-6">
+            {activeFilter === "All"
+              ? "Top trending in Lagos"
+              : `${activeFilter} Events in Lagos`}
+          </h2>
+
+         
+        </div>
+      </section>
+
+*/
 
 
 
@@ -72,7 +146,12 @@ const [activeFilter, setActiveFilter] = useState("All");
 
 
     <div className="">
-      
+   
+
+<Navbar search={search} setSearch={setSearch} />
+     
+
+
 <section className="mt-0 md:mt-10 px-10 py-10 ">
 
   <div className="relative"> 
@@ -110,26 +189,17 @@ const [activeFilter, setActiveFilter] = useState("All");
 </section>
 
 
+
 <EventFilterBar   activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}/>
 
 
- <section>
-        <div className="p-6 bg-white min-h-screen max-w-[90%] mx-auto">
-          <h2 className="text-2xl font-bold mb-6">
-            {activeFilter === "All"
-              ? "Top trending in Lagos"
-              : `${activeFilter} Events in Lagos`}
-          </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredEvents.map((event, index) => (
-              <EventCard key={index} {...event} />
-            ))}
-          </div>
-        </div>
+ <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {filteredEvents.map((event, index) => (
+          <EventCard key={index} {...event} />
+        ))}
       </section>
-
 </div>
     
   );
