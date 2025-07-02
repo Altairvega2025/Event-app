@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<string>("");
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -23,7 +23,7 @@ const Navbar = () => {
       {/* Backdrop */}
       {showSearch && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-30 z-40"
+          className="fixed inset-0 bg-opacity-30 z-40"
           onClick={() => setShowSearch(false)}
         ></div>
       )}
@@ -38,7 +38,7 @@ const Navbar = () => {
                 alt="Logo"
                 className="w-6 h-6 rounded-2xl"
               />
-              <p className="font-bold text-3xl text-[#3e80e4]">Ita Dun</p>
+              <p className="font-bold font-inter text-3xl text-[#3e80e4]">Ita Dun</p>
             </Link>
           </div>
 

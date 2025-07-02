@@ -1,22 +1,19 @@
 "use client";
-
+import { Inter } from "next/font/google"
 import { usePathname } from "next/navigation";
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+
+
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "@/components/Footer";
 
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 
 export default function RootLayout({
@@ -24,6 +21,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
 
  const pathname = usePathname();
 
@@ -35,10 +33,9 @@ export default function RootLayout({
 
   
   return (
-    <html lang="en">
+    <html lang="en" >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        className={inter.variable} >
        
         {!hideLayout && <Navbar  />}
         <main>{children}</main>
