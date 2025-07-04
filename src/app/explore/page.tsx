@@ -1,5 +1,5 @@
-import EventCard from '@/components/EventCard'
-import { events } from '@/data/events'
+import EventCard from '@/components/user/EventCard'
+import { events } from '@/components/user/events'
 import React from 'react'
 
 export default function explore() {

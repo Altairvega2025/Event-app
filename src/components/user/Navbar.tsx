@@ -6,6 +6,7 @@ import Link from "next/link";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
+import { useSearch } from "./SearchContext";
 
 
 
@@ -14,8 +15,9 @@ type NavbarProps = {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Navbar = ({search,setSearch}:NavbarProps) => {
+const Navbar = () => {
   
+  const { search, setSearch } = useSearch();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
 
@@ -27,7 +29,7 @@ const Navbar = ({search,setSearch}:NavbarProps) => {
 
   return (
     <>
-      {/* Backdrop */}
+    
       {showSearch && (
         <div
           className="fixed inset-0 bg-opacity-30 z-40"
@@ -48,7 +50,7 @@ const Navbar = ({search,setSearch}:NavbarProps) => {
               <p className="font-bold font-inter text-3xl text-[#3e80e4]">Ita Dun</p>
             </Link>
           </div>
-
+<div className="flex items-center gap-2">
           {/* Desktop Links */}
           <ul className="hidden md:flex items-center space-x-6 text-[#163546] font-light">
             <li><Link href="/">Home</Link></li>
@@ -57,8 +59,13 @@ const Navbar = ({search,setSearch}:NavbarProps) => {
             <li><Link href="/blog">Blog</Link></li>
             <li><Link href="/contacts">Contacts Us</Link></li>
 
-            {/* Search toggle or input */}
-            {showSearch ? (
+         
+          
+
+           
+          </ul>
+          
+ {showSearch ? (
               <div className="relative">
                 <input
                   type="text"
@@ -75,25 +82,38 @@ const Navbar = ({search,setSearch}:NavbarProps) => {
                 </button>
               </div>
             ) : (
-              <li>
+              <div>
                 <button
                   onClick={() => setShowSearch(true)}
                   className="text-gray-700 hover:text-[#3e80e4]"
                 >
                   <CiSearch size={20} />
                 </button>
-              </li>
+              </div>
             )}
 
-            <li>
+
+  <div>
               <Link
                 href="/Login"
                 className="bg-[#3e80e4] text-white px-6 py-2 rounded hover:bg-white hover:text-[#3e80e4] hover:border hover:border-[#3e80e4]"
               >
                 Login
               </Link>
-            </li>
-          </ul>
+            </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
           {/* Mobile Hamburger */}
           <div className="md:hidden pr-2">
@@ -115,13 +135,7 @@ const Navbar = ({search,setSearch}:NavbarProps) => {
             <li><Link href="/createevent">Create Event</Link></li>
             <li><Link href="/blog">Blog</Link></li>
             <li><Link href="/contacts">Contacts Us</Link></li>
-             <li>
-              <Link
-                href="/Login"
-                className="bg-[#3e80e4] text-white px-6 py-2 rounded hover:bg-white hover:text-[#3e80e4] hover:border hover:border-[#3e80e4]"
-              >
-                Login
-              </Link></li>
+            
           </ul>
         )}
       </div>

@@ -1,12 +1,12 @@
 'use client';
 
 import React from "react";
-import { useParams } from "next/navigation"; // For App Router
-// import { useRouter } from "next/router"; // For Pages Router
-import { events } from "@/data/events"; // Adjust path based on structure
+import { useParams } from "next/navigation"; 
+// import { useRouter } from "next/router"; 
+import { events } from "@/components/user/events"; 
 
 const EventDetailPage: React.FC = () => {
-  const { id } = useParams(); // returns id as string
+  const { id } = useParams(); 
   const event = events.find((e) => e.id === Number(id));
 
   if (!event) {

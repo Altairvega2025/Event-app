@@ -2,8 +2,11 @@
 import { Inter } from "next/font/google"
 import { usePathname } from "next/navigation";
 import "./globals.css";
-import Footer from "@/components/Footer";
-import React from "react";
+import Footer from "@/components/user/Footer";
+import React, { useState } from "react";
+import Navbar from "@/components/user/Navbar";
+import { SearchContext } from "@/components/user/SearchContext";
+import { ClerkProvider } from "@clerk/nextjs";
 
 
 const inter = Inter({
@@ -23,19 +26,23 @@ export default function RootLayout({
 
  const pathname = usePathname();
 
-  const hideLayoutOn = ["/Login", "/signup", "/verify"]; // Add more routes to hide layout
+  const hideLayoutOn = ["/Login", "/signup", "/verify"]; 
 
   const hideLayout = hideLayoutOn.includes(pathname);
-
+ const [search, setSearch] = useState('');
   return (
     <html lang="en" >
       <body
         className={inter.variable} >
+          <ClerkProvider>
+          <SearchContext.Provider value={{ search, setSearch }}>
         
-        <main>{children}</main>
-
+ {!hideLayout && <Navbar/>}
+      <main>{children}</main>
+      
         {!hideLayout && <Footer />}
-        
+        </SearchContext.Provider>
+        </ClerkProvider>
       </body>
     </html>
   );

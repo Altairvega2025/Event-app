@@ -11,7 +11,7 @@ export default function Footer() {
        <div className="bg-[#B5D5FF] text-gray-800 px-8 md:px-8 py-20 ">
         <div className='mx-auto items-center max-w-6xl w-full'> 
       <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 md:grid-cols-4">
-        {/* Logo & Description */}
+      
         <div>
           <div className="flex items-center mb-4">
                 <img src="/image/logo.jpg" alt="Pevent Logo" className="w-6 h-6 mr-2 rounded-2xl" />
@@ -25,7 +25,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Product Links */}
+       
         <div>
           <h3 className="font-semibold mb-3 text-base">Product</h3>
           <ul className="space-y-2 text-sm">
@@ -36,7 +36,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact Info */}
         <div>
           <h3 className="font-semibold mb-3 text-base">Contact Us</h3>
           <ul className="space-y-2 text-sm">
@@ -51,7 +50,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Social Links */}
+        
         <div>
           <h3 className="font-semibold mb-3 text-base">Follow Us</h3>
           <ul className="space-y-2 text-sm">
@@ -75,7 +74,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Line */}
+      
       <div className="mt-10 pt-6 border-t border-gray-300 text-sm flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-center">© 2025 Ita Dun. All rights reserved.</p>
         <div className="flex gap-4">

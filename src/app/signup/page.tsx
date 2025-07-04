@@ -6,12 +6,16 @@ import { CiPhone, CiMail } from 'react-icons/ci';
 import { FaUser } from 'react-icons/fa';
 import { BsFillCheckSquareFill } from 'react-icons/bs';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { FormErrors, UserInfo } from './signup';
+import axios from 'axios';
+
+
 
 const Signup = () => {
   const router = useRouter();
 
   
-  const [userInfor, setuserInfor] = useState({
+  const [userInfor, setuserInfor] = useState<UserInfo>({
     name: '',
     email: '',
     isChecked: false,
@@ -19,6 +23,45 @@ const Signup = () => {
     passwordverify: true,
     isPasswordSecure: true,
   });
+  const [errors, setErrors] = useState<FormErrors>({});
+
+
+
+
+
+const validateForm = () => {
+    const newErrors: FormErrors = {};
+
+  if (!userInfor.name?.trim()) {
+    newErrors.name = "Full name is required.";
+  }
+
+  if (!userInfor.email?.trim()) {
+    newErrors.email = "Email is required.";
+  } else if (!/^\S+@\S+\.\S+$/.test(userInfor.email)) {
+    newErrors.email = "Email is not valid.";
+  }
+
+  if (!userInfor.password?.trim()) {
+    newErrors.password = "Password is required.";
+  } else if (userInfor.password.length < 6) {
+    newErrors.password = "Password must be at least 6 characters.";
+  }
+
+  if (!userInfor.isChecked) {
+    newErrors.terms = "You must accept the terms.";
+  }
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
+
+
+
+
+
+
 
    const handlepassword = (val: string) => {
     if (/^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/.test(val)) {
@@ -28,10 +71,33 @@ const Signup = () => {
     }
   };
 
-  const handleSignup = () => {
-    router.push('/Login');
-  };
 
+
+const  url=process.env.NEXT_BASE_URL_
+
+
+
+  const handleSignup = async () => {
+  if (!validateForm()) return;
+
+  try {
+    const response = await axios.post(
+      `${process.env.url}/signup`,
+      {
+        name: userInfor.name,
+        email: userInfor.email,
+        password: userInfor.password,
+      }
+    );
+
+    console.log('Signup successful:', response.data);
+
+   
+    router.push('/Login');
+  } catch (error: any) {
+    console.error('Signup failed:', error.response?.data || error.message);
+      }
+};
 
   return (
 
@@ -69,6 +135,7 @@ const Signup = () => {
               onChange={(e) => setuserInfor({ ...userInfor, name: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 rounded-md bg-blue-100 focus:outline-none"
             />
+             {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
           </div>
 
           {/* Email Input */}
@@ -84,7 +151,7 @@ const Signup = () => {
               className="w-full px-4 py-3 border border-gray-300 rounded-md bg-blue-100 focus:outline-none"
             />
           </div>
-
+{errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
          
  <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -105,6 +172,7 @@ const Signup = () => {
                     isPasswordSecure: !userInfor.isPasswordSecure,
                   })
                 }
+
                 className="border border-l-0 border-gray-300 px-3 rounded-r-md flex items-center justify-center bg-blue-100"
               >
              {userInfor.isPasswordSecure ? (
@@ -114,6 +182,7 @@ const Signup = () => {
     )}
                </button>
             </div>
+            {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
           </div>
          
          
@@ -124,6 +193,7 @@ const Signup = () => {
               type="checkbox"
               checked={userInfor.isChecked}
               onChange={(e) => setuserInfor({ ...userInfor, isChecked: e.target.checked })}
+              
               className="mt-1"
             />
             <p className="text-sm text-gray-600">
@@ -132,6 +202,7 @@ const Signup = () => {
               <span className="text-blue-600">privacy policy</span>.
             </p>
           </div>
+          {errors.terms && <p className="text-red-500 text-sm mt-1">{errors.terms}</p>}
 
           {/* Submit Button */}
           <button

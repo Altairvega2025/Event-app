@@ -4,23 +4,24 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useRef } from "react";
+import { ReactNode, useRef } from "react";
 import { useRouter } from "next/navigation";
 import light from '../../public/image/AdobeStock_241384655.webp'
-
-import  {titleClassName,headerclass,What_We_Do, quote,textclass,We_work_with}  from "./data";
 import { useState,useEffect } from "react";
 import Link from "next/link";
-import { events } from "@/data/events";
-import EventCard from "@/components/EventCard";
-import EventFilterBar from "@/components/EventFilterBar";
-import Navbar from "@/components/Navbar";
+import { events } from "@/components/user/events";
+import EventCard from "@/components/user/EventCard";
+import EventFilterBar from "@/components/user/EventFilterBar";
+import { useSearch } from "@/components/user/SearchContext";
 
 
 
+interface HomeProps {
+  search: string;
+  setSearch: (value: string) => void;
+}
 
-
-export default function Home() {
+export default function Home({ children }: { children: ReactNode }) {
 
 
  
@@ -28,8 +29,8 @@ const [activeFilter, setActiveFilter] = useState("All");
 
   
 
-  const [search, setSearch] = useState<string>("");
 
+const { search, setSearch } = useSearch();
   const filteredEventee = events.filter((event) => {
     if (activeFilter === "All") return true;
     return event.title?.toLowerCase().includes(activeFilter.toLowerCase());
@@ -58,64 +59,6 @@ const filteredEvents = events.filter((event) => {
   });
 
   
-/*
-  {events.filter((val)=>{
-    return(search===""||val.toLowerCase().includes(search.toLowerCase())
-    ?val:null)}).map((event, index)=>
-    (
-       <EventCard key={index} {...event} />
-    )) }
-
-
-
-
-    const filteredEvents = events.filter((event) => {
-    if (activeFilter === "All") return true;
-    return event.category?.toLowerCase().includes(activeFilter.toLowerCase());
-  });
-
-
-
-   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredEvents.map((event, index) => (
-              <EventCard key={index} {...event} />
-            ))}
-          </div>
-
-
-
-
-
-          
-<EventFilterBar   activeFilter={activeFilter}
-        setActiveFilter={setActiveFilter}/>
-
-
- <section>
-        <div className="p-6 bg-white min-h-screen max-w-[90%] mx-auto">
-          <h2 className="text-2xl font-bold mb-6">
-            {activeFilter === "All"
-              ? "Top trending in Lagos"
-              : `${activeFilter} Events in Lagos`}
-          </h2>
-
-         
-        </div>
-      </section>
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
 
    const sliderRef = useRef<Slider>(null);
 
@@ -148,8 +91,6 @@ const filteredEvents = events.filter((event) => {
     <div className="">
    
 
-<Navbar search={search} setSearch={setSearch} />
-     
 
 
 <section className="mt-0 md:mt-10 px-10 py-10 ">
@@ -195,7 +136,7 @@ const filteredEvents = events.filter((event) => {
 
 
 
- <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+ <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-auto max-w-6xl w-full px-4 py-4">
         {filteredEvents.map((event, index) => (
           <EventCard key={index} {...event} />
         ))}

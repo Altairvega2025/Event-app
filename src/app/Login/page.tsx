@@ -1,4 +1,4 @@
-// Tailwind CSS conversion of your React Native login UI (Next.js + Tailwind CSS format)
+
 
 'use client';
 
@@ -8,48 +8,91 @@ import Image from 'next/image';
 //import { AuthContext } from '../AuthScreen/AuthContext';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import Link from 'next/link';
-//import light from '../../../public/image/AdobeStock_241384655.webp'
 import { FcGoogle } from "react-icons/fc";
+import { FormErrors, UserInfo } from './login';
+
+
 
 export default function Login() {
- // const { login } = useContext(AuthContext);
-  const router = useRouter();
+   const router = useRouter();
 
-  const [userInfor, setuserInfor] = useState({
+
+
+  const [userInfor, setuserInfor] = useState<UserInfo>({
     email: '',
-    emailverify: true,
     password: '',
-    passwordverify: true,
     isPasswordSecure: true,
   });
 
-  const handleemail = (val: string) => {
-    if (/[a-zA-Z]+@[a-z]+\.[a-z]{2,3}/.test(val)) {
-      setuserInfor({ ...userInfor, email: val, emailverify: true });
-    } else {
-      setuserInfor({ ...userInfor, email: val, emailverify: false });
-    }
+  const [errors, setErrors] = useState<FormErrors>({
+    email: '',
+    password: '',
+  });
+
+  const handleemail = (value: string) => {
+    setuserInfor({ ...userInfor, email: value });
+    setErrors({ ...errors, email: '' }); // Clear error on input
   };
 
-  const handlepassword = (val: string) => {
-    if (/^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/.test(val)) {
-      setuserInfor({ ...userInfor, password: val, passwordverify: true });
-    } else {
-      setuserInfor({ ...userInfor, password: val, passwordverify: false });
-    }
+  const handlepassword = (value: string) => {
+    setuserInfor({ ...userInfor, password: value });
+    setErrors({ ...errors, password: '' }); // Clear error on input
   };
 
-  const handleSignin = () => {
-    if (userInfor.email === '' || userInfor.password === '') {
-      alert('Fill in mandatory details');
-    } else if (userInfor.emailverify && userInfor.passwordverify) {
-      alert('Successful');
-     // login();
-      router.push('/'); 
-    } else {
-      alert('Password should contain at least 6 characters with a digit and symbol');
+  const validateForm = ():boolean => {
+    let isValid = true;
+    const newErrors = { email: '', password: '' };
+
+    if (!userInfor.email.trim()) {
+      newErrors.email = 'Email is required.';
+      isValid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userInfor.email)) {
+      newErrors.email = 'Enter a valid email address.';
+      isValid = false;
     }
+
+    if (!userInfor.password.trim()) {
+      newErrors.password = 'Password is required.';
+      isValid = false;
+    } else if (userInfor.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters.';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
   };
+
+const  url=process.env.NEXT_BASE_URL_
+
+
+const handleSignin = async () => {
+  if (!validateForm()) return;
+
+  try {
+    const res = await fetch(`${url}/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: userInfor.email,
+        password: userInfor.password,
+      }),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      alert(errorData.message || 'Login failed');
+      return;
+    }
+
+    const data = await res.json();
+    console.log('Login successful:', data);
+    
+    router.push('/');
+  } catch (error) {
+    console.error('Login error:', error);
+  }
+};
 
   return (
 
@@ -82,8 +125,9 @@ export default function Login() {
               placeholder="Example@gmail.com"
               value={userInfor.email}
               onChange={(e) => handleemail(e.target.value)}
-              className="mt-1 w-full border border-gray-300 px-4 py-3 rounded-md focus:ring-2 bg-blue-100"
+              className="mt-1 w-full  border-gray-300 px-4 py-3 rounded-md focus:ring-2 bg-blue-100"
             />
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
           </div>
 
           <div>
@@ -96,7 +140,7 @@ export default function Login() {
                 placeholder="Password"
                 value={userInfor.password}
                 onChange={(e) => handlepassword(e.target.value)}
-                className="w-full border border-gray-300 px-4 py-3 rounded-l-md focus:ring-2 bg-blue-100 border-r-0"
+                className="w-full  border-gray-300 px-4 py-3 rounded-l-md  bg-blue-100 border-r-0"
               />
               <button
                 onClick={() =>
@@ -114,6 +158,8 @@ export default function Login() {
     )}
                </button>
             </div>
+             {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
+           
           </div>
 
           <div className="text-right">
