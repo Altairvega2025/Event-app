@@ -21,7 +21,7 @@ interface HomeProps {
   setSearch: (value: string) => void;
 }
 
-export default function Home({ children }: { children: ReactNode }) {
+export default function Home() {
 
 
  
