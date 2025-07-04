@@ -6,7 +6,7 @@ import Footer from "@/components/user/Footer";
 import React, { useState } from "react";
 import Navbar from "@/components/user/Navbar";
 import { SearchContext } from "@/components/user/SearchContext";
-import { ClerkProvider } from "@clerk/nextjs";
+
 
 
 const inter = Inter({
@@ -34,7 +34,7 @@ export default function RootLayout({
     <html lang="en" >
       <body
         className={inter.variable} >
-          <ClerkProvider>
+         
           <SearchContext.Provider value={{ search, setSearch }}>
         
  {!hideLayout && <Navbar/>}
@@ -42,7 +42,7 @@ export default function RootLayout({
       
         {!hideLayout && <Footer />}
         </SearchContext.Provider>
-        </ClerkProvider>
+      
       </body>
     </html>
   );
