@@ -6,7 +6,9 @@ import { useParams } from "next/navigation";
 import { events } from "@/components/user/events"; 
 
 const EventDetailPage: React.FC = () => {
-  const { id } = useParams(); 
+  const params = useParams();
+   const id = params?.id;
+  
   const event = events.find((e) => e.id === Number(id));
 
   if (!event) {

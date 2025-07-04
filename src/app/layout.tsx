@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   
 
- const pathname = usePathname();
+ const pathname = usePathname()??"";
 
   const hideLayoutOn = ["/Login", "/signup", "/verify"]; 
 
